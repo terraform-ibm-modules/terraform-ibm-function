@@ -6,6 +6,7 @@ This is a collection of modules that make it easier to provision Function resour
 * [action](modules/action)
 * [rule](modules/rule)
 * [trigger](modules/trigger)
+* [cloud-function](modules/cloud-function)
 
 ## Compatibility
 
@@ -45,7 +46,7 @@ data "ibm_resource_group" "resource_group" {
 }
 
 module "action" {
-  source = "./terraform-ibm-function/function/ibm//modules/action"
+  source = "terraform-ibm-function/function/ibm//modules/action"
 
   action_name         = var.action_name
   namespace_name      = var.namespace_name

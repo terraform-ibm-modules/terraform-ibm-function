@@ -65,3 +65,21 @@ variable "package_name" {
   default     = null
 }
 
+variable "package_publish" {
+  description = "Package visibilty."
+  type        = bool
+  default     = null
+}
+
+variable "package_user_defined_annotations" {
+  description = "Annotation values in KEY VALUE format."
+  type        = string
+  default     = null
+}
+
+variable "package_user_defined_parameters" {
+  description = "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the package."
+  type        = string
+  default     = null
+}
+

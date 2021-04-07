@@ -3,33 +3,15 @@ variable "action_name" {
   type        = string
 }
 
-variable "limits" {
+variable "action_limits" {
   description = "Action runtime limits"
   type        = list (any)
   default = null
 }
 
-variable "exec" {
+variable "action_exec" {
   description = "Execution info"
   type        = list(any)
-}
-
-variable "publish" {
-  description = "Action visibilty."
-  type        = bool
-  default = null
-}
-
-variable "user_defined_annotations" {
-  description = "Annotation values in KEY VALUE format."
-  type        = string
-  default = null
-}
-
-variable "user_defined_parameters" {
-  description = "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the package."
-  type        = string
-  default = null
 }
 
 variable "namespace_name" {
@@ -83,5 +65,51 @@ variable "package_user_defined_parameters" {
   description = "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the package."
   type        = string
   default     = null
+}
+
+variable "action_publish" {
+  description = "Action visibilty."
+  type        = bool
+  default = null
+}
+
+variable "action_user_defined_annotations" {
+  description = "Annotation values in KEY VALUE format."
+  type        = string
+  default = null
+}
+
+variable "action_user_defined_parameters" {
+  description = "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the package."
+  type        = string
+  default = null
+}
+
+variable "trigger_name" {
+  description = "Name of Trigger."
+  type        = string
+}
+
+variable "trigger_feed" {
+  description = "Trigger feed"
+  type        = list(any)
+  default = null
+}
+
+variable "trigger_user_defined_annotations" {
+  description = "Annotation values in KEY VALUE format."
+  type        = string
+  default = null
+}
+
+variable "trigger_user_defined_parameters" {
+  description = "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the package."
+  type        = string
+  default = null
+}
+
+variable "rule_name" {
+  description = "Name of rule."
+  type        = string
 }
 

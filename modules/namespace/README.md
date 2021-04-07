@@ -25,7 +25,7 @@ module "namespace" {
 
 | Name                              | Description                                           | Type   | Default | Required |
 |-----------------------------------|-------------------------------------------------------|--------|---------|----------|
-| action | `create` a new namespace or `get` details of existing namespace | string | "create" | no |
+| action | create a new namespace or get details of existing namespace - Enter `create` or `get` | string | "create" | no |
 | name | The name of namespace | string | n/a | yes |
 | description | Namespace Description | string | n/a | yes |
 | resource\_group\_id | ID of the resource group | string | n/a | yes |

@@ -1,6 +1,6 @@
-# Action Module Example
+# Cloud-Function Module Example
 
-This module is used to create an action and optionally provision a namespace
+This module is used to create an IBM Cloud function with all the necesaary resources such as action, triggers, rule(Which connects the action with trigger) and optionally provision namespace and/or package
 
 ## Example Usage
 ```
@@ -9,20 +9,26 @@ data "ibm_resource_group" "resource_group" {
   name = var.resource_group
 }
 
-module "action" {
+module "cloud-function" {
   source = "terraform-ibm-modules/function/ibm//modules/action"
 
-  action_name               = var.action_name
-  namespace_name            = var.namespace_name
-  resource_group_id         = data.ibm_resource_group.resource_group.id
-  provision_namespace       = var.provision_namespace
-  create_package            = var.create_package
-  package_name              = var.package_name
-  exec                      = var.exec
-  limits                    = var.limits
-  action_publish            = var.action_publish
-  user_defined_annotations  = var.user_defined_annotations
-  user_defined_parameters   = var.user_defined_parameters
+  action_name                        = var.action_name
+  namespace_name                     = var.namespace_name
+  resource_group_id                  = data.ibm_resource_group.resource_group.id
+  provision_namespace                = var.provision_namespace
+  create_package                     = var.create_package
+  package_name                       = var.package_name
+  package_publish                    = var.package_publish
+  package_user_defined_annotations   = var.package_user_defined_annotations
+  package_user_defined_parameters    = var.package_user_defined_parameters
+  action_exec                        = var.action_exec
+  action_limits                      = var.action_limits
+  action_publish                     = var.action_publish
+  action_user_defined_annotations    = var.action_user_defined_annotations
+  action_user_defined_parameters     = var.action_user_defined_parameters
+  trigger_name                       = var.trigger_name
+  trigger_user_defined_annotations   = var.trigger_user_defined_annotations
+  trigger_user_defined_parameters    = var.trigger_user_defined_parameters 
 
 }
 ```
@@ -39,12 +45,17 @@ module "action" {
 | namespace_description | Namespace Description | string | n/a | no |
 | create_package | Option whether to create a new package | bool | false | no |
 | package_name | Name of package | string | n/a | no |
+| package\_publish | Package visibility | string | n/a | no |
 | resource\_group\_id | ID of the resource group | string | n/a | no |
-| exec | Execution Info | list(object{<br>image = string<br>init = string <br>code = string<br>code_path = string<br>kind = string<br>main = string<br>components = list(string)}) | n/a | yes |
-| limits | Action runtime limits | list(object{<br>timeout = number<br>memory = number<br>log_size = number}) | n/a | no |
-| publish | Action visibility | string | n/a | no |
-| user\_defined\_annotations | Annotation values in KEY VALUE format. | string | "[]" | no |
-| user\_defined\_parameters | Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the trigger. | string | "[]" | no |
+| action_exec | Execution Info | list(object{<br>image = string<br>init = string <br>code = string<br>code_path = string<br>kind = string<br>main = string<br>components = list(string)}) | n/a | yes |
+| action_limits | Action runtime limits | list(object{<br>timeout = number<br>memory = number<br>log_size = number}) | n/a | no|
+| action\_publish | Action visibility | string | n/a | no |
+| action\_user\_defined\_annotations | Annotation values in KEY VALUE format. | string | "[]" | no |
+| action\_user\_defined\_parameters | Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the trigger. | string | "[]" | no |
+| trigger_name | Name of trigger. | string | n/a | yes |
+| trigger\_user\_defined\_annotations | Annotation values in KEY VALUE format. | string | "[]" | no |
+| trigger\_user\_defined\_parameters | Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the trigger. | string | "[]" | no |
+| rule_name | Name of the rule. | string | n/a | yes |
 
 ## exec variable inputs
 
@@ -70,6 +81,9 @@ module "action" {
 
 | Name | Description |
 |------|-------------|
-| name | The name of action |
+| action_name | The name of action |
+| trigger_name | The name of trigger |
+| rule_name | The name of rule |
+| package_name | The name of package |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

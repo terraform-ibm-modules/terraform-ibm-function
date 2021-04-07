@@ -25,7 +25,7 @@ resource "ibm_function_action" "function_action" {
   name         = (var.package_name != null ?  join("/", [var.package_name, var.action_name]) : var.action_name )
   namespace    = var.namespace_name
   dynamic "limits" {
-    for_each = ( var.limits != null ? var.limits : [] )
+    for_each = ( var.action_limits != null ? var.action_limits : [] )
     content {
       timeout = ( lookup(limits.value, "timeout", null) != null ? limits.value.timeout : 60000 )
       memory = ( lookup(limits.value, "memory", null) != null ? limits.value.memory : 256 )
@@ -33,7 +33,7 @@ resource "ibm_function_action" "function_action" {
     }
   }
   dynamic "exec" {
-    for_each  = var.exec
+    for_each  = var.action_exec
     content {
       image = lookup(exec.value, "image", null)
       init = lookup(exec.value, "init", null)
@@ -44,11 +44,34 @@ resource "ibm_function_action" "function_action" {
       components = lookup(exec.value, "components", null)
     }
   }
-  publish = (var.publish != null ? var.publish : null)
-  user_defined_annotations = (var.user_defined_annotations != null ? var.user_defined_annotations : "[]")
-  user_defined_parameters = ( var.user_defined_parameters != null ? var.user_defined_parameters : "[]" )
+  publish = (var.action_publish != null ? var.action_publish : null)
+  user_defined_annotations = (var.action_user_defined_annotations != null ? var.action_user_defined_annotations : "[]")
+  user_defined_parameters = ( var.action_user_defined_parameters != null ? var.action_user_defined_parameters : "[]" )
 
-  depends_on = [ibm_function_package.function_package]
+  depends_on = [ibm_function_package.function_package, ibm_function_namespace.function_namespace]
 }
 
+resource "ibm_function_trigger" "function_trigger" {
+  name         = var.trigger_name
+  namespace    = var.namespace_name
+  dynamic "feed" {
+    for_each = ( var.trigger_feed != null ? var.trigger_feed : null )
+    content {
+      name = feed.value.name
+      parameters = ( lookup(feed.value, "parameters", null) != null ? feed.value.parameters : "[]" )
+    }
+  }
+  user_defined_annotations  = ( var.trigger_user_defined_annotations != null ? var.trigger_user_defined_annotations : "[]")
+  user_defined_parameters = ( var.trigger_user_defined_parameters !=null ? var.trigger_user_defined_parameters : "[]")
 
+  depends_on = [ibm_function_namespace.function_namespace]
+}
+
+resource "ibm_function_rule" "function_rule" {
+  name         = var.rule_name
+  namespace    = var.namespace_name
+  trigger_name = var.trigger_name
+  action_name  = var.action_name
+
+  depends_on = [ibm_function_action.function_action, ibm_function_trigger.function_trigger, ibm_function_namespace.function_namespace]
+}

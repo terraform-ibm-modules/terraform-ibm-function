@@ -15,7 +15,12 @@ variable "resource_group_name" {
 }
 
 variable "action" {
-  description = "Create a new namespace or get details of existing namespace"
+  description = "Create a new namespace or get details of existing namespace - Enter create or get"
   type        = string
   default     = "create"
+
+  validation {
+    condition     = contains(["create", "get"], var.action)
+    error_message = "Allowed values for action are \"create\", \"get\"."
+  }
 }

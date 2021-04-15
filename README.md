@@ -8,7 +8,7 @@ This is a collection of modules that make it easier to provision Function resour
 * [trigger](modules/trigger)
 * [cloud-function](modules/cloud-function)
 
-## Compatibility
+## Compatibility 
 
 This module is meant for use with Terraform 0.13. 
 

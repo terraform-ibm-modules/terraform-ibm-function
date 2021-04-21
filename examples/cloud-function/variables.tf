@@ -40,7 +40,7 @@ variable "provision_namespace" {
 variable "create_package" {
   description = "Option whether to create a new package"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "package_name" {

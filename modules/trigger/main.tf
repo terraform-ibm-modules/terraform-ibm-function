@@ -13,7 +13,7 @@ resource "ibm_function_trigger" "function_trigger" {
   name         = var.trigger_name
   namespace    = var.namespace_name
   dynamic "feed" {
-    for_each = ( var.feed != null ? var.feed : null )
+    for_each = ( var.feed != null ? var.feed : [] )
     content {
       name = feed.value.name
       parameters = ( lookup(feed.value, "parameters", null) != null ? feed.value.parameters : "[]" )

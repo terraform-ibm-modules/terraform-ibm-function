@@ -4,7 +4,6 @@
 #####################################################
 
 provider "ibm" {
-    ibmcloud_api_key=""
 }
 
 data "ibm_resource_group" "resource_group" {

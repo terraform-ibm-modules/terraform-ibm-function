@@ -43,7 +43,7 @@ module "cloud-function" {
 | namespace_name | Namespace to which the rule is attached | string | n/a | yes |
 | provision_namespace| Option whether to provision namespace | boolean | false | no |
 | namespace_description | Namespace Description | string | n/a | no |
-| create_package | Option whether to create a new package | bool | false | no |
+| create_package | Option whether to create a new package | bool | true | no |
 | package_name | Name of package | string | n/a | no |
 | package\_publish | Package visibility | string | n/a | no |
 | resource\_group\_id | ID of the resource group | string | n/a | no |

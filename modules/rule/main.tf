@@ -3,9 +3,9 @@ locals {
 }
 
 resource "ibm_function_namespace" "function_namespace" {
-  count = var.provision_namespace ? 1 : 0
-  name = var.namespace_name
-  description = ( var.namespace_description != null ? var.namespace_description : null )
+  count             = var.provision_namespace ? 1 : 0
+  name              = var.namespace_name
+  description       = (var.namespace_description != null ? var.namespace_description : null)
   resource_group_id = var.resource_group_id
 }
 

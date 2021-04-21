@@ -1,6 +1,6 @@
 # Function Module Example
 
-This example illustrates how to use the terraform ibm cloud function modules by setting up the [Periodic Slack Reminder](https://cloud.ibm.com/docs/openwhisk?topic=openwhisk-templates#slack-reminder-template) quickstart template and covers all aspects of the function resources such as action, sequences, triggers, rules, package, binding, etc . 
+This example illustrates how to use the terraform ibm cloud function modules by setting up the [Periodic Slack Reminder](https://cloud.ibm.com/docs/openwhisk?topic=openwhisk-templates#slack-reminder-template) quickstart template and covers all aspects of the function resources such as action, sequences, triggers, rules, package, binding, etc .
 
 This module when deployed will post to slack on an interval provided by the user when setting up the periodic trigger. Before deploying this module, go to https://api.slack.com/incoming-webhooks to set up the incoming webhooks URL.
 

@@ -28,7 +28,7 @@ module "cloud-function" {
   action_user_defined_parameters     = var.action_user_defined_parameters
   trigger_name                       = var.trigger_name
   trigger_user_defined_annotations   = var.trigger_user_defined_annotations
-  trigger_user_defined_parameters    = var.trigger_user_defined_parameters 
+  trigger_user_defined_parameters    = var.trigger_user_defined_parameters
 
 }
 ```

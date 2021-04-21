@@ -5,8 +5,8 @@ variable "action_name" {
 
 variable "limits" {
   description = "Action runtime limits"
-  type        = list (any)
-  default = null
+  type        = list(any)
+  default     = null
 }
 
 variable "exec" {
@@ -17,19 +17,19 @@ variable "exec" {
 variable "publish" {
   description = "Action visibilty."
   type        = bool
-  default = null
+  default     = null
 }
 
 variable "user_defined_annotations" {
   description = "Annotation values in KEY VALUE format."
   type        = string
-  default = null
+  default     = null
 }
 
 variable "user_defined_parameters" {
   description = "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the package."
   type        = string
-  default = null
+  default     = null
 }
 
 variable "namespace_name" {
@@ -40,7 +40,7 @@ variable "namespace_name" {
 variable "namespace_description" {
   description = "Namespace Description."
   type        = string
-  default = null
+  default     = null
 }
 
 variable "resource_group_id" {

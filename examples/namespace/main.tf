@@ -1,4 +1,4 @@
-  #####################################################
+#####################################################
 # Action Configuration Example
 # Copyright 2020 IBM
 #####################################################
@@ -13,8 +13,8 @@ data "ibm_resource_group" "resource_group" {
 module "namespace" {
   source = "terraform-ibm-modules/function/ibm//modules/namespace"
 
-  action                    = var.action
-  name                      = var.name
-  description               = var.description
-  resource_group_id         = data.ibm_resource_group.resource_group.id
+  action            = var.action
+  name              = var.name
+  description       = var.description
+  resource_group_id = data.ibm_resource_group.resource_group.id
 }

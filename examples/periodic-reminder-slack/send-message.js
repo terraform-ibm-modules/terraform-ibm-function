@@ -6,6 +6,5 @@ function main(params) {
     const message = 'Your scrum is starting now.  Time to find your team!';
     return { text: message };
   }
-  
+
   exports.main = main;
-  

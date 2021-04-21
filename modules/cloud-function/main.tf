@@ -55,7 +55,7 @@ resource "ibm_function_trigger" "function_trigger" {
   name         = var.trigger_name
   namespace    = var.namespace_name
   dynamic "feed" {
-    for_each = ( var.trigger_feed != null ? var.trigger_feed : null )
+    for_each = ( var.trigger_feed != null ? var.trigger_feed : [] )
     content {
       name = feed.value.name
       parameters = ( lookup(feed.value, "parameters", null) != null ? feed.value.parameters : "[]" )
@@ -71,7 +71,7 @@ resource "ibm_function_rule" "function_rule" {
   name         = var.rule_name
   namespace    = var.namespace_name
   trigger_name = var.trigger_name
-  action_name  = var.action_name
+  action_name  = (var.package_name != null ?  join("/", [var.package_name, var.action_name]) : var.action_name )
 
   depends_on = [ibm_function_action.function_action, ibm_function_trigger.function_trigger, ibm_function_namespace.function_namespace]
 }

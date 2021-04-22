@@ -4,7 +4,7 @@
 ########################################################
 
 /****************************************************
-Example Usage 
+Example Usage
 
 action_name = "cf-action"
 action_exec = [{
@@ -31,12 +31,12 @@ rule_name  = "cf-rule"
 
 action_name = "<action_name>"
 action_exec = [{
-  main = "main"
-  kind = "python:3.7"
+  main      = "main"
+  kind      = "python:3.7"
   code_path = "<action_zip>"
 }]
 namespace_name = "<namespace>"
 resource_group = "default"
-trigger_name = "<trigger_name>"
-trigger_feed = <trigger_feed>
-rule_name  = "<rule_name>"
+trigger_name   = "<trigger_name>"
+trigger_feed   = "<trigger_feed>"
+rule_name      = "<rule_name>"

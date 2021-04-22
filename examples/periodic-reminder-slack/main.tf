@@ -10,20 +10,20 @@ data "ibm_resource_group" "resource_group" {
 module "periodic-reminder-slack-namespace" {
   source = "terraform-ibm-modules/function/ibm//modules/namespace"
 
-  action = "create"
-  name = var.namespace_name
+  action            = "create"
+  name              = var.namespace_name
   resource_group_id = data.ibm_resource_group.resource_group.id
 
 }
 
 module "openwhisk-slack-package" {
-    source = "terraform-ibm-modules/function/ibm//modules/package"
+  source = "terraform-ibm-modules/function/ibm//modules/package"
 
-    namespace_name = module.periodic-reminder-slack-namespace.name
+  namespace_name = module.periodic-reminder-slack-namespace.name
 
-    package_name = "openwhisk-slack"
-    bind_package_name = "/whisk.system/slack"
-    user_defined_parameters =  <<EOF
+  package_name            = "openwhisk-slack"
+  bind_package_name       = "/whisk.system/slack"
+  user_defined_parameters = <<EOF
     [
         {
         "key" : "url",
@@ -39,7 +39,7 @@ module "send-message-action" {
 
   namespace_name = module.periodic-reminder-slack-namespace.name
 
-  package_name = "periodic-reminder-slack-package"
+  package_name   = "periodic-reminder-slack-package"
   create_package = true
 
   action_name = "send-message"
@@ -65,9 +65,9 @@ module "post-message-slack-sequence" {
   exec = [{
     kind = "sequence"
     components = [
-        join("/", ["/",module.periodic-reminder-slack-namespace.id, module.send-message-action.package_name, "send-message"]),
-        join("/", ["/",module.periodic-reminder-slack-namespace.id, module.openwhisk-slack-package.name, "post"])
-      ]
+      join("/", ["/", module.periodic-reminder-slack-namespace.id, module.send-message-action.package_name, "send-message"]),
+      join("/", ["/", module.periodic-reminder-slack-namespace.id, module.openwhisk-slack-package.name, "post"])
+    ]
   }]
   limits = [{
     timeout = 300000
@@ -84,7 +84,7 @@ module "periodic-reminder-slack-trigger" {
 
   trigger_name = "periodic-reminder-slack-trigger"
   feed = [{
-    name = "/whisk.system/alarms/alarm"
+    name       = "/whisk.system/alarms/alarm"
     parameters = <<EOF
     [
       {
@@ -103,8 +103,8 @@ module "periodic-reminder-slack-rule" {
 
   namespace_name = module.periodic-reminder-slack-namespace.name
 
-  rule_name = "periodic-reminder-slack-rule"
-  action_name = module.post-message-slack-sequence.name
+  rule_name    = "periodic-reminder-slack-rule"
+  action_name  = module.post-message-slack-sequence.name
   trigger_name = module.periodic-reminder-slack-trigger.name
-  
+
 }

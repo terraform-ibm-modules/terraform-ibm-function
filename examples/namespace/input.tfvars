@@ -4,7 +4,7 @@
 ########################################################
 
 /****************************************************
-Example Usage 
+Example Usage
 
 name = "namespace-name"
 description = "sample-namepspace"
@@ -13,7 +13,7 @@ action = "create"
 
 ******************************************************/
 
-name = "<namespace_name>"
+name                = "<namespace_name>"
 resource_group_name = "<resource_group_name>"
 
 

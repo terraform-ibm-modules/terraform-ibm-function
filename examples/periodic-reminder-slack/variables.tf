@@ -1,26 +1,26 @@
 variable "namespace_name" {
   description = "Namespace Name"
-  type = string
+  type        = string
 }
 variable "resource_group_name" {
   description = "Resource group name"
-  type = string
+  type        = string
 }
 
 variable "slack_webhook_url" {
   description = "Slack Web hook URL"
-  type = string
+  type        = string
 }
 
 variable "cron" {
   description = "Cron schedule in UNIX crontab format"
-  type = string
+  type        = string
 }
 
 variable "create_namespace" {
   description = "Create new namespace or use existing namespace"
-  type = bool
-  default = true
+  type        = bool
+  default     = true
 }
 
 

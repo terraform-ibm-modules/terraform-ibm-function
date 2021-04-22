@@ -5,8 +5,8 @@ variable "action_name" {
 
 variable "limits" {
   description = "Action runtime limits"
-  type        = list (any)
-  default = null
+  type        = list(any)
+  default     = null
 }
 
 variable "exec" {

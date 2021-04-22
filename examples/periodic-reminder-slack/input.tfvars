@@ -4,7 +4,7 @@
 ########################################################
 
 /****************************************************
-Example Usage 
+Example Usage
 
 resource_group_name       = "default"
 namespace_name            = "periodic-reminder-slack"
@@ -15,10 +15,10 @@ cron                      = "* * * * *"
 
 ******************************************************/
 
-resource_group_name       = "default"
-namespace_name            = "periodic-reminder-slack"
+resource_group_name = "default"
+namespace_name      = "periodic-reminder-slack"
 
-slack_webhook_url         = "https://hooks.slack.com/services/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"
+slack_webhook_url = "https://hooks.slack.com/services/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"
 
-cron                      = "* * * * *"
+cron = "* * * * *"
 

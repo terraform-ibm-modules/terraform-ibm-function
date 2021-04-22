@@ -10,7 +10,7 @@ This is a collection of modules that make it easier to provision Function resour
 
 ## Compatibility
 
-This module is meant for use with Terraform 0.13. 
+This module is meant for use with Terraform 0.13.
 
 ## Usage
 
@@ -52,7 +52,7 @@ module "action" {
   namespace_name      = var.namespace_name
   provision_namespace = true
   resource_group_id   = data.ibm_resource_group.resource_group.id
-  
+
   exec = [{
     main = var.main
     kind = var.kind
@@ -65,7 +65,7 @@ module "action" {
 
 }
 ```
-## NOTE: 
+## NOTE:
 
 If we want to make use of a particular version of module, then set the argument "version" to respective module version.
 
@@ -74,7 +74,7 @@ If we want to make use of a particular version of module, then set the argument 
 ### Terraform plugins
 
 - [Terraform](https://www.terraform.io/downloads.html) 0.13
-- [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm) 
+- [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm)
 
 ## Install
 
@@ -87,7 +87,17 @@ Be sure you have the correct Terraform version (0.13), you can choose the binary
 
 Be sure you have the compiled plugins on $HOME/.terraform.d/plugins/
 
-- [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm) 
+- [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm)
+
+### Pre-commit Hooks
+
+Run the following command to execute the pre-commit hooks defined in `.pre-commit-config.yaml` file
+
+  `pre-commit run -a`
+
+We can install pre-coomit tool using
+
+  `pip install pre-commit`
 
 ## How to input varaible values through a file
 

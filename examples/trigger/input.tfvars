@@ -4,7 +4,7 @@
 ########################################################
 
 /****************************************************
-Example Usage 
+Example Usage
 
 resource_group_name = "default"
 
@@ -51,9 +51,9 @@ rule_name = "<trigger_name>"
 
 feed = [{
   name = "<feed>"
-  parameters =[{
-    "key":"cron",
-    "value":"* * * * *"
+  parameters = [{
+    "key" : "cron",
+    "value" : "* * * * *"
   }]
 }]
 

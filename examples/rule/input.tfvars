@@ -4,7 +4,7 @@
 ########################################################
 
 /****************************************************
-Example Usage 
+Example Usage
 
 resource_group_name = "dedault"
 
@@ -25,5 +25,5 @@ namespace_name = "<namespace_name>"
 rule_name = "<package_name>"
 
 trigger_name = "<trigger_name>"
-action_name = "<action_name>"
+action_name  = "<action_name>"
 

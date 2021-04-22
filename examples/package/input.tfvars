@@ -4,8 +4,8 @@
 ########################################################
 
 /****************************************************
-Example Usage 
-//mandatory variables 
+Example Usage
+//mandatory variables
 
 resource_group_name = "default"
 
@@ -41,7 +41,7 @@ EOF
 
 resource_group_name = "<resource_group_name>"
 
-namespace_name = "<namespace_name>"
+namespace_name      = "<namespace_name>"
 provision_namespace = "<true_or_false>"
 
 package_name = "<package_name>"

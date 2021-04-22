@@ -5,8 +5,8 @@ variable "action_name" {
 
 variable "action_limits" {
   description = "Action runtime limits"
-  type        = list (any)
-  default = null
+  type        = list(any)
+  default     = null
 }
 
 variable "action_exec" {
@@ -22,7 +22,7 @@ variable "namespace_name" {
 variable "namespace_description" {
   description = "Namespace Description."
   type        = string
-  default = null
+  default     = null
 }
 
 variable "resource_group" {
@@ -70,19 +70,19 @@ variable "package_user_defined_parameters" {
 variable "action_publish" {
   description = "Action visibilty."
   type        = bool
-  default = null
+  default     = null
 }
 
 variable "action_user_defined_annotations" {
   description = "Annotation values in KEY VALUE format."
   type        = string
-  default = null
+  default     = null
 }
 
 variable "action_user_defined_parameters" {
   description = "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the package."
   type        = string
-  default = null
+  default     = null
 }
 
 variable "trigger_name" {
@@ -93,19 +93,19 @@ variable "trigger_name" {
 variable "trigger_feed" {
   description = "Trigger feed"
   type        = list(any)
-  default = null
+  default     = null
 }
 
 variable "trigger_user_defined_annotations" {
   description = "Annotation values in KEY VALUE format."
   type        = string
-  default = null
+  default     = null
 }
 
 variable "trigger_user_defined_parameters" {
   description = "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the package."
   type        = string
-  default = null
+  default     = null
 }
 
 variable "rule_name" {

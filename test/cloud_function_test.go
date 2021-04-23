@@ -17,7 +17,7 @@ func TestAccIBMCloudFunction(t *testing.T) {
 		TerraformDir: "../examples/cloud-function",
 
 		Vars: map[string]interface{}{
-			"resource_group":                   "Default",
+			"resource_group":                   "default",
 			"action_name":                      "cf-action2",
 			"namespace_name":                   "cf-namespace",
 			"provision_namespace":              true,

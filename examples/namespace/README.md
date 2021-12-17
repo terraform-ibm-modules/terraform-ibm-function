@@ -8,7 +8,7 @@ This example illustrates how to use the `namespace` module.
 
 | Name                              | Description                                           | Type   | Default | Required |
 |-----------------------------------|-------------------------------------------------------|--------|---------|----------|
-| action | create a new namespace or get details of existing namespace - Enter `create` or `get` | string | "create" | no |
+| is_new_namespace| Option whether to provision namespace | boolean | true | no |
 | name | The name of namespace | string | n/a | yes |
 | description | Namespace Description | string | n/a | yes |
 | resource\_group\_name | Nane of the resource group | string | n/a | yes |

@@ -17,11 +17,11 @@ exec = {
 
 // optional variables
 
-provision_namespace = false
+is_new_namespace = false
 
 package_name = "mypackage"
 
-create_package = true
+is_new_package = true
 
 limits = [{
   timeout = "300000"
@@ -54,11 +54,11 @@ EOF
 
 resource_group_name = "default"
 
-namespace_name      = "<namespace_name>"
-provision_namespace = true
+namespace_name   = "<namespace_name>"
+is_new_namespace = true
 
 package_name   = "<package_name>"
-create_package = true
+is_new_package = true
 
 action_name = "<action_name>"
 exec = [{

@@ -1,22 +1,22 @@
 #####################################################
-# Action Configuration Example
+# IBM Cloud Function Rule - Example
 # Copyright 2020 IBM
 #####################################################
 
 provider "ibm" {
 }
 
-data "ibm_resource_group" "resource_group" {
-  name = var.resource_group_name
-}
-
 module "rule" {
-  source = "terraform-ibm-modules/function/ibm//modules/rule"
+  source = "../.."
 
-  rule_name           = var.rule_name
+  is_new_namespace    = var.is_new_namespace
   namespace_name      = var.namespace_name
-  provision_namespace = var.provision_namespace
-  resource_group_id   = data.ibm_resource_group.resource_group.id
-  trigger_name        = var.trigger_name
+  resource_group_name = var.resource_group_name
+  is_new_action       = var.is_new_action
   action_name         = var.action_name
+  action_exec         = var.action_exec
+  is_new_trigger      = var.is_new_trigger
+  trigger_name        = var.trigger_name
+  is_new_rule         = var.is_new_rule
+  rule_name           = var.rule_name
 }

@@ -1,15 +1,20 @@
 #####################################################
-# Cloud-Function Configuration Example
-# Copyright 2020 IBM
+# IBM Cloud Function
+# Copyright 2021 IBM
 #####################################################
 
-###################################################################
-# Namespace variables
-###################################################################
+##################################################
+# Namepspace Variables
+##################################################
 variable "is_new_namespace" {
-  description = "Option whether to create a new namespace"
+  description = "Option whether to provision namespace "
   type        = bool
   default     = true
+}
+
+variable "resource_group_name" {
+  description = "Name of the resource group"
+  type        = string
 }
 
 variable "namespace_name" {
@@ -23,23 +28,25 @@ variable "namespace_description" {
   default     = null
 }
 
-variable "resource_group_name" {
-  description = "Resource Group"
-  type        = string
-}
-
-###################################################################
-# Package variables
-###################################################################
+##################################################
+# Package Variables
+##################################################
 variable "is_new_package" {
   description = "Option whether to create a new package"
   type        = bool
-  default     = true
+  default     = false
+}
+
+variable "is_package_enabled" {
+  description = "Option whether to read existing package"
+  type        = bool
+  default     = false
 }
 
 variable "package_name" {
   description = "Package Name"
   type        = string
+  default     = null
 }
 
 variable "package_publish" {
@@ -55,42 +62,48 @@ variable "package_user_defined_annotations" {
 }
 
 variable "package_user_defined_parameters" {
-  description = "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the package."
+  description = ";/"
   type        = string
   default     = null
 }
 
-###################################################################
-# Action variables
-###################################################################
+variable "bind_package_name" {
+  description = "Name of package to be binded."
+  type        = string
+  default     = null
+}
+
+##################################################
+# Action Variables
+##################################################
 variable "is_new_action" {
   description = "Option whether to create a new action"
   type        = bool
-  default     = true
+  default     = false
+}
+
+variable "is_action_enabled" {
+  description = "Option whether to read existing action"
+  type        = bool
+  default     = false
 }
 
 variable "action_name" {
   description = "Name of action."
   type        = string
+  default     = null
 }
 
 variable "action_limits" {
   description = "Action runtime limits"
   type        = list(any)
-  default = [{
-    log_size = 5
-    timeout  = 50000
-    memory   = 256
-  }]
+  default     = null
 }
 
 variable "action_exec" {
   description = "Execution info"
   type        = list(any)
-  default = [{
-    kind      = "nodejs:10"
-    code_path = "nodeaction.zip"
-  }]
+  default     = [{}]
 }
 
 variable "action_publish" {
@@ -111,18 +124,25 @@ variable "action_user_defined_parameters" {
   default     = null
 }
 
-###################################################################
-# Trigger variables
-###################################################################
+##################################################
+# Trigger Variables
+##################################################
 variable "is_new_trigger" {
   description = "Option whether to create a new trigger"
   type        = bool
-  default     = true
+  default     = false
+}
+
+variable "is_trigger_enabled" {
+  description = "Option whether to read existing trigger"
+  type        = bool
+  default     = false
 }
 
 variable "trigger_name" {
   description = "Name of Trigger."
   type        = string
+  default     = null
 }
 
 variable "trigger_feed" {
@@ -143,16 +163,18 @@ variable "trigger_user_defined_parameters" {
   default     = null
 }
 
-###################################################################
-# Rule variables
-###################################################################
+##################################################
+# Resource Group Variables
+##################################################
 variable "is_new_rule" {
   description = "Option whether to create a new rule"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "rule_name" {
   description = "Name of rule."
   type        = string
+  default     = null
 }
+

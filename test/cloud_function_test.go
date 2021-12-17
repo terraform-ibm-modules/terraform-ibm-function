@@ -17,15 +17,16 @@ func TestAccIBMCloudFunction(t *testing.T) {
 		TerraformDir: "../examples/cloud-function",
 
 		Vars: map[string]interface{}{
-			"resource_group":                   "default",
-			"action_name":                      "cf-action2",
+			"is_new_namespace":                 true,
 			"namespace_name":                   "cf-namespace",
-			"provision_namespace":              true,
-			"create_package":                   true,
+			"resource_group_name":              "default",
+			"is_new_package":                   true,
 			"package_name":                     "newPackage",
 			"package_publish":                  false,
 			"package_user_defined_annotations": "[]",
 			"package_user_defined_parameters":  "[]",
+			"is_new_action":                    true,
+			"action_name":                      "cf-action2",
 			"action_exec": []map[string]interface{}{
 				{
 					"main": "main",
@@ -43,9 +44,11 @@ func TestAccIBMCloudFunction(t *testing.T) {
 			},
 			"action_user_defined_annotations":  "[]",
 			"action_user_defined_parameters":   "[]",
+			"is_new_trigger":                   true,
 			"trigger_name":                     "cf-trigger2",
 			"trigger_user_defined_annotations": "[]",
 			"trigger_user_defined_parameters":  "[]",
+			"is_new_rule":                      true,
 			"rule_name":                        "cf-rule",
 		},
 	})

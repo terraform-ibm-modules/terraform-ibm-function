@@ -1,11 +1,12 @@
-########################################################
-# Cloud Function configuration
+#####################################################
+# Cloud-Function Configuration Example
 # Copyright 2020 IBM
-########################################################
+#####################################################
 
 /****************************************************
 Example Usage
 
+package_name = "cf-package"
 action_name = "cf-action"
 action_exec = [{
   main = "main"
@@ -13,7 +14,7 @@ action_exec = [{
   code_path = "action.zip"
 }]
 namespace_name = "cf-namespace"
-resource_group = "default"
+resource_group_name = "default"
 trigger_name = "cf-trigger"
 trigger_feed = [{
     name = "/whisk.system/alarms/alarm"
@@ -29,14 +30,25 @@ trigger_feed = [{
 rule_name  = "cf-rule"
 ******************************************************/
 
-action_name = "<action_name>"
+is_new_package = true
+package_name   = "cf-package"
+action_name    = "cf-action"
 action_exec = [{
-  main      = "main"
-  kind      = "python:3.7"
-  code_path = "<action_zip>"
+  kind      = "nodejs:10"
+  code_path = "nodeaction.zip"
 }]
-namespace_name = "<namespace>"
-resource_group = "default"
-trigger_name   = "<trigger_name>"
-trigger_feed   = "<trigger_feed>"
-rule_name      = "<rule_name>"
+namespace_name      = "cf-namespace"
+resource_group_name = "default"
+trigger_name        = "cf-trigger"
+trigger_feed = [{
+  name       = "/whisk.system/alarms/alarm"
+  parameters = <<EOF
+    [
+      {
+        "key" : "cron",
+        "value" : "* * * * *"
+      }
+    ]
+    EOF
+}]
+rule_name = "cf-rule"

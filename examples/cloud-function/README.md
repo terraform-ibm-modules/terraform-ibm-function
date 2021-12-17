@@ -8,22 +8,25 @@ This example illustrates how to use the `cloud-function` module.
 
 | Name                              | Description                                           | Type   | Default | Required |
 |-----------------------------------|-------------------------------------------------------|--------|---------|----------|
-| action_name | Name of action. | string | n/a | yes |
+| is_new_namespace| Option whether to provision namespace | boolean | false | no |
 | namespace_name | Namespace to which the rule is attached | string | n/a | yes |
-| provision_namespace| Option whether to provision namespace | boolean | false | no |
+| resource\_group\_name | Name of the resource group | string | n/a | no |
 | namespace_description | Namespace Description | string | n/a | no |
-| create_package | Option whether to create a new package | bool | true | no |
-| package_name | Name of package | string | n/a | no |
+| is_new_package | Option whether to create a new package | bool | true | no |
+| package_name | Name of package | string | n/a | yes |
 | package\_publish | Package visibility | string | n/a | no |
-| resource\_group | ID of the resource group | string | n/a | no |
+| is_new_action | Option whether to create a new action | bool | true | no |
+| action_name | Name of action. | string | n/a | yes |
 | action_exec | Execution Info | list(object{<br>image = string<br>init = string <br>code = string<br>code_path = string<br>kind = string<br>main = string<br>components = list(string)}) | n/a | yes |
 | action_limits | Action runtime limits | list(object{<br>timeout = number<br>memory = number<br>log_size = number}) | n/a | no|
 | action\_publish | Action visibility | string | n/a | no |
 | action\_user\_defined\_annotations | Annotation values in KEY VALUE format. | string | "[]" | no |
 | action\_user\_defined\_parameters | Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the trigger. | string | "[]" | no |
+| is_new_trigger | Option whether to create a new trigger | bool | true | no |
 | trigger_name | Name of trigger. | string | n/a | yes |
 | trigger\_user\_defined\_annotations | Annotation values in KEY VALUE format. | string | "[]" | no |
 | trigger\_user\_defined\_parameters | Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the trigger. | string | "[]" | no |
+| is_new_rule | Option whether to create a new rule | bool | true | no |
 | rule_name | Name of the rule. | string | n/a | yes |
 
 ## exec variable inputs
@@ -50,10 +53,11 @@ This example illustrates how to use the `cloud-function` module.
 
 | Name | Description |
 |------|-------------|
+| namespace_name | The name of namespace |
+| package_name | The name of package |
 | action_name | The name of action |
 | trigger_name | The name of trigger |
 | rule_name | The name of rule |
-| package_name | The name of package |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

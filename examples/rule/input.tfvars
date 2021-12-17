@@ -1,15 +1,15 @@
-########################################################
-# Package configuration
+#####################################################
+# IBM Cloud Function Rule - Example
 # Copyright 2020 IBM
-########################################################
+#####################################################
 
 /****************************************************
 Example Usage
 
 resource_group_name = "dedault"
 
+is_new_namespace = true
 namespace_name = "function-namespace-name"
-provision_namespace = true
 
 rule_name = "package-name"
 

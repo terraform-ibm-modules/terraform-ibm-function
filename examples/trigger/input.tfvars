@@ -1,7 +1,7 @@
-########################################################
-# Package configuration
+#####################################################
+# IBM Cloud Function Trigger - Example
 # Copyright 2020 IBM
-########################################################
+#####################################################
 
 /****************************************************
 Example Usage
@@ -9,11 +9,11 @@ Example Usage
 resource_group_name = "default"
 
 namespace_name = "function-namespace-name"
-provision_namespace = true
+is_new_namespace = true
 
 trigger_name = "trigger-name"
 
-feed = [{
+trigger_feed = [{
   name = "/whisk.system/alarms/alarm"
   parameters = [
   {
@@ -23,7 +23,7 @@ feed = [{
   ]
 }]
 
-user_defined_parameters = <<EOF
+trigger_user_defined_parameters = <<EOF
   [
     {
       "key":"sample",
@@ -32,7 +32,7 @@ user_defined_parameters = <<EOF
   ]
 EOF
 
-user_defined_annotations = <<EOF
+trigger_user_defined_annotations = <<EOF
   [
     {
       "key":"sample",
@@ -43,17 +43,12 @@ EOF
 
 ******************************************************/
 
-resource_group_name = "<resource_group_name>"
+resource_group_name = "default"
+namespace_name      = "iam-namespace"
+is_new_package      = true
+package_name        = "iam-package"
+is_new_trigger      = true
+trigger_name        = "iam-trigger"
 
-namespace_name = "<namespace_name>"
-
-rule_name = "<trigger_name>"
-
-feed = [{
-  name = "<feed>"
-  parameters = [{
-    "key" : "cron",
-    "value" : "* * * * *"
-  }]
-}]
+trigger_feed = [{ "name" = "/whisk.system/alarms/alarm", "parameters" = "${"[{\"key\" : \"cron\",\"value\" : \"* * * * *\"}]"}" }]
 

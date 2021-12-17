@@ -11,10 +11,24 @@ This module when deployed will post to slack on an interval provided by the user
 
 | Name                              | Description                                           | Type   | Default | Required |
 |-----------------------------------|-------------------------------------------------------|--------|---------|----------|
+| is_new_namespace| Option whether to provision namespace | boolean | true | no |
 | resource\_group\_name | Name of the resource group | string | n/a | yes |
 | namespace_name | The name of namespace | string | n/a | yes |
 | slack_webhook_url | Slack webhook URL | string | n/a | yes |
 | cron | Cron schedule in UNIX crontab format  | string | n/a | yes |
+| is_new_package | Option whether to create a new package | bool | true | no |
+| package_name | Name of package | string | n/a | yes |
+| is_new_action| Option whether to provision action | boolean | true | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| namespace_name | The name of namespace |
+| package_name | The name of package |
+| action_name | The name of action |
+| trigger_name | The name of trigger |
+| rule_name | The name of rule |
 
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

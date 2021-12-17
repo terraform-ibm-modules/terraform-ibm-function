@@ -1,27 +1,25 @@
 #####################################################
-# Action Configuration Example
+# IBM Cloud Function Action - Example
 # Copyright 2020 IBM
 #####################################################
 
 provider "ibm" {
 }
 
-data "ibm_resource_group" "resource_group" {
-  name = var.resource_group_name
-}
-
 module "action" {
-  source = "terraform-ibm-modules/function/ibm//modules/action"
+  source = "../.."
 
-  action_name              = var.action_name
-  namespace_name           = var.namespace_name
-  provision_namespace      = var.provision_namespace
-  create_package           = var.create_package
-  package_name             = var.package_name
-  resource_group_id        = data.ibm_resource_group.resource_group.id
-  exec                     = var.exec
-  limits                   = var.limits
-  publish                  = var.publish
-  user_defined_annotations = var.user_defined_annotations
-  user_defined_parameters  = var.user_defined_parameters
+  is_new_namespace                = var.is_new_namespace
+  namespace_name                  = var.namespace_name
+  resource_group_name             = var.resource_group_name
+  is_new_package                  = var.is_new_package
+  is_package_enabled              = var.is_package_enabled
+  package_name                    = var.package_name
+  is_new_action                   = var.is_new_action
+  action_name                     = var.action_name
+  action_exec                     = var.action_exec
+  action_limits                   = var.action_limits
+  action_publish                  = var.action_publish
+  action_user_defined_annotations = var.action_user_defined_annotations
+  action_user_defined_parameters  = var.action_user_defined_parameters
 }

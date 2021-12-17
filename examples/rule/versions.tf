@@ -1,5 +1,5 @@
 #####################################################
-# IBM Cloud Function Rule Module
+# IBM Cloud Function Rule - Example
 # Copyright 2020 IBM
 #####################################################
 

@@ -8,14 +8,14 @@ This example illustrates how to use the `trigger` module.
 
 | Name                              | Description                                           | Type   | Default | Required |
 |-----------------------------------|-------------------------------------------------------|--------|---------|----------|
-| provision_namespace| Option whether to provision namespace | boolean | n/a | yes |
+| is_new_namespace| Option whether to provision namespace | boolean | true | no |
 | namespace_name | Namespace to which the rule is attached | string | n/a | yes |
 | namespace_description | Namespace Description | string | n/a | no |
-| resource\_group\_name | Name of the resource group | string | n/a | yes |
-| trigger_name | The name of rule | string | n/a | yes |
-| feed | Trigger feed | list(object{<br>name = string<br>parameters = string}) | n/a | no |
-| user\_defined\_annotations | Annotation values in KEY VALUE format. | string | "[]" | no |
-| user\_defined\_parameters | Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the trigger. | string | "[]" | no |
+| is_new_trigger| Option whether to provision namespace | boolean | true | no |
+| trigger_name | The name of trigger | string | n/a | yes |
+| trigger_feed | Trigger feed | list(object{<br>name = string<br>parameters = string}) | n/a | no |
+| trigger_user\_defined\_annotations | Annotation values in KEY VALUE format. | string | "[]" | no |
+| trigger_user\_defined\_parameters | Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the trigger. | string | "[]" | no |
 
 ## feed variable inputs
 
@@ -23,6 +23,13 @@ This example illustrates how to use the `trigger` module.
 |-----------------------------------|-------------------------------------------------------|--------|---------|----------|
 | name| Trigger Feed ACTION_NAME | string | n/a | yes |
 | parameters| Parameters definitions in key value format. Parameter bindings are included in the context and passed when the action is invoked. | string | "[]" | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| namespace_name | The name of namespace |
+| trigger_name | The name of trigger |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

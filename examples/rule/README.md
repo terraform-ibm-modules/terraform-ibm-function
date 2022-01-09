@@ -8,13 +8,27 @@ This example illustrates how to use the `rule` module.
 
 | Name                              | Description                                           | Type   | Default | Required |
 |-----------------------------------|-------------------------------------------------------|--------|---------|----------|
-| provision_namespace| Option whether to provision namespace | boolean | n/a | yes |
+| is_new_namespace| Option whether to provision namespace | boolean | true | no |
 | namespace_name | Namespace to which the rule is attached | string | n/a | yes |
 | namespace_description | Namespace Description | string | n/a | no |
 | resource\_group\_name | Name of the resource group | string | n/a | yes |
-| rule_name | The name of rule | string | n/a | yes |
-| trigger\_name | The name of trigger | string | n/a | yes |
+| is_new_package | Option whether to create a new package | bool | false | no |
+| package_name | Name of package | string | n/a | no |
+| is_new_action | Option whether to create a new action | bool | true | no |
 | action\_name | The name of action | string | n/a | yes |
+| is_new_trigger | Option whether to create a new trigger | bool | true | no |
+| trigger\_name | The name of trigger | string | n/a | yes |
+| is_new_rule | Option whether to create a new rule | bool | true | no |
+| rule_name | Name of the rule | string | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| namespace_name | The name of namespace |
+| action_name | The name of action |
+| trigger_name | The name of trigger |
+| rule_name | The name of rule |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

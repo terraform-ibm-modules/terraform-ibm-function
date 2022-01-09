@@ -1,16 +1,16 @@
-########################################################
-# Package configuration
+#####################################################
+# IBM Cloud Function Package - Example
 # Copyright 2020 IBM
-########################################################
+#####################################################
 
 /****************************************************
 Example Usage
 //mandatory variables
 
-resource_group_name = "default"
+resource_group = "default"
 
 namespace_name = "function-namespace-name"
-provision_namespace = true
+is_new_namespace = true
 
 package_name = "package-name"
 
@@ -39,9 +39,7 @@ user_defined_annotations = <<EOF
 EOF
 ******************************************************/
 
-resource_group_name = "<resource_group_name>"
-
-namespace_name      = "<namespace_name>"
+resource_group      = "<resource_group>"
+is_new_namespace    = "<namespace_name>"
 provision_namespace = "<true_or_false>"
-
-package_name = "<package_name>"
+package_name        = "<package_name>"

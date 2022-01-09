@@ -1,7 +1,18 @@
+#####################################################
+# IBM Cloud Function - periodic reminder slack example
+# Copyright 2020 IBM
+#####################################################
+variable "is_new_namespace" {
+  description = "Provision Namespace"
+  type        = bool
+  default     = true
+}
+
 variable "namespace_name" {
   description = "Namespace Name"
   type        = string
 }
+
 variable "resource_group_name" {
   description = "Resource group name"
   type        = string
@@ -17,10 +28,15 @@ variable "cron" {
   type        = string
 }
 
-variable "create_namespace" {
-  description = "Create new namespace or use existing namespace"
+variable "is_new_package" {
+  description = "Provision Package"
   type        = bool
   default     = true
 }
 
+variable "is_new_action" {
+  description = "Provision Action"
+  type        = bool
+  default     = true
+}
 

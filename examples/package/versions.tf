@@ -1,5 +1,5 @@
 #####################################################
-# IBM Cloud Function Package Module
+# IBM Cloud Function Package - Example
 # Copyright 2020 IBM
 #####################################################
 

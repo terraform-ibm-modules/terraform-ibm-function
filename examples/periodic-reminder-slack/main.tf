@@ -1,29 +1,22 @@
-
+#####################################################
+# IBM Cloud Function - periodic reminder slack example
+# Copyright 2020 IBM
+#####################################################
 
 provider "ibm" {
 }
 
-data "ibm_resource_group" "resource_group" {
-  name = var.resource_group_name
-}
-
-module "periodic-reminder-slack-namespace" {
-  source = "terraform-ibm-modules/function/ibm//modules/namespace"
-
-  action            = "create"
-  name              = var.namespace_name
-  resource_group_id = data.ibm_resource_group.resource_group.id
-
-}
-
 module "openwhisk-slack-package" {
-  source = "terraform-ibm-modules/function/ibm//modules/package"
+  source = "../.."
 
-  namespace_name = module.periodic-reminder-slack-namespace.name
+  is_new_namespace    = true
+  namespace_name      = var.namespace_name
+  resource_group_name = var.resource_group_name
 
-  package_name            = "openwhisk-slack"
-  bind_package_name       = "/whisk.system/slack"
-  user_defined_parameters = <<EOF
+  is_new_package                  = true
+  package_name                    = "openwhisk-slack"
+  bind_package_name               = "/whisk.system/slack"
+  package_user_defined_parameters = <<EOF
     [
         {
         "key" : "url",
@@ -31,23 +24,26 @@ module "openwhisk-slack-package" {
         }
     ]
     EOF
-
 }
 
 module "send-message-action" {
-  source = "terraform-ibm-modules/function/ibm//modules/action"
+  source = "../.."
 
-  namespace_name = module.periodic-reminder-slack-namespace.name
+  is_new_namespace    = false
+  namespace_name      = var.namespace_name
+  resource_group_name = var.resource_group_name
 
+  is_new_package = true
   package_name   = "periodic-reminder-slack-package"
-  create_package = true
 
-  action_name = "send-message"
-  exec = [{
+
+  is_new_action = true
+  action_name   = "send-message"
+  action_exec = [{
     kind = "nodejs:10"
     code = file("send-message.js")
   }]
-  limits = [{
+  action_limits = [{
     timeout = 300000
   }]
 
@@ -55,21 +51,25 @@ module "send-message-action" {
 }
 
 module "post-message-slack-sequence" {
-  source = "terraform-ibm-modules/function/ibm//modules/action"
+  source = "../.."
 
-  namespace_name = module.periodic-reminder-slack-namespace.name
+  is_new_namespace    = false
+  namespace_name      = var.namespace_name
+  resource_group_name = var.resource_group_name
 
   package_name = module.send-message-action.package_name
 
-  action_name = "post_message_slack_sequence"
-  exec = [{
+  is_new_action = true
+  action_name   = "post_message_slack_sequence"
+  action_exec = [{
     kind = "sequence"
     components = [
-      join("/", ["/", module.periodic-reminder-slack-namespace.id, module.send-message-action.package_name, "send-message"]),
-      join("/", ["/", module.periodic-reminder-slack-namespace.id, module.openwhisk-slack-package.name, "post"])
+      join("/", ["/", module.openwhisk-slack-package.namespace_id, module.send-message-action.package_name, "send-message"]),
+      join("/", ["/", module.openwhisk-slack-package.namespace_id, module.openwhisk-slack-package.package_name, "post"])
     ]
   }]
-  limits = [{
+
+  action_limits = [{
     timeout = 300000
   }]
 
@@ -78,12 +78,17 @@ module "post-message-slack-sequence" {
 
 
 module "periodic-reminder-slack-trigger" {
-  source = "terraform-ibm-modules/function/ibm//modules/trigger"
+  source = "../.."
 
-  namespace_name = module.periodic-reminder-slack-namespace.name
+  is_new_namespace    = false
+  namespace_name      = var.namespace_name
+  resource_group_name = var.resource_group_name
+  package_name        = module.send-message-action.package_name
 
-  trigger_name = "periodic-reminder-slack-trigger"
-  feed = [{
+
+  is_new_trigger = true
+  trigger_name   = "periodic-reminder-slack-trigger"
+  trigger_feed = [{
     name       = "/whisk.system/alarms/alarm"
     parameters = <<EOF
     [
@@ -94,17 +99,23 @@ module "periodic-reminder-slack-trigger" {
     ]
     EOF
   }]
+
+  depends_on = [module.openwhisk-slack-package]
 }
 
 
 
 module "periodic-reminder-slack-rule" {
-  source = "terraform-ibm-modules/function/ibm//modules/rule"
+  source = "../.."
 
-  namespace_name = module.periodic-reminder-slack-namespace.name
+  is_new_namespace    = false
+  namespace_name      = var.namespace_name
+  resource_group_name = var.resource_group_name
+  package_name        = module.send-message-action.package_name
+  is_new_rule         = true
+  rule_name           = "periodic-reminder-slack-rule"
+  action_name         = "post_message_slack_sequence"
+  trigger_name        = module.periodic-reminder-slack-trigger.trigger_name
 
-  rule_name    = "periodic-reminder-slack-rule"
-  action_name  = module.post-message-slack-sequence.name
-  trigger_name = module.periodic-reminder-slack-trigger.name
-
+  depends_on = [module.openwhisk-slack-package, module.post-message-slack-sequence]
 }

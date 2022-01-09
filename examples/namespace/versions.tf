@@ -1,5 +1,5 @@
 #####################################################
-# IBM Cloud Function Namespace Module
+# IBM Cloud Function Namespace - Example
 # Copyright 2020 IBM
 #####################################################
 

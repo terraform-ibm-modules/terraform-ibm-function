@@ -1,5 +1,5 @@
 #####################################################
-# IBM Cloud Function Trigger Module
+# IBM Cloud Function Trigger - Example
 # Copyright 2020 IBM
 #####################################################
 

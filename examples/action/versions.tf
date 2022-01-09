@@ -1,5 +1,5 @@
 #####################################################
-# IBM Cloud Function Action Module
+# IBM Cloud Function Action - Example
 # Copyright 2020 IBM
 #####################################################
 

@@ -1,5 +1,5 @@
 #####################################################
-# IBM Cloud Function Action
+# Cloud-Function Configuration Example
 # Copyright 2020 IBM
 #####################################################
 

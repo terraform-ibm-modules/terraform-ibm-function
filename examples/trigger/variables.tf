@@ -1,24 +1,12 @@
-variable "trigger_name" {
-  description = "Name of Trigger."
-  type        = string
-}
+#####################################################
+# IBM Cloud Function Trigger - Example
+# Copyright 2020 IBM
+#####################################################
 
-variable "feed" {
-  description = "Trigger feed"
-  type        = list(any)
-  default     = null
-}
-
-variable "user_defined_annotations" {
-  description = "Annotation values in KEY VALUE format."
-  type        = string
-  default     = null
-}
-
-variable "user_defined_parameters" {
-  description = "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the trigger."
-  type        = string
-  default     = null
+variable "is_new_namespace" {
+  description = "Provision Namespace"
+  type        = bool
+  default     = true
 }
 
 variable "namespace_name" {
@@ -37,8 +25,33 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "provision_namespace" {
-  description = "Provision Namespace"
+variable "is_new_trigger" {
+  description = "Provision Triger"
   type        = bool
-  default     = false
+  default     = true
+}
+
+variable "trigger_name" {
+  description = "Name of Trigger."
+  type        = string
+}
+
+variable "trigger_feed" {
+  description = "Trigger feed"
+  type        = list(any)
+  default = [{
+    "name" = "/whisk.system/alarms/alarm",
+  "parameters" = "${"[{\"key\" : \"cron\",\"value\" : \"* * * * *\"}]"}" }]
+}
+
+variable "trigger_user_defined_annotations" {
+  description = "Annotation values in KEY VALUE format."
+  type        = string
+  default     = null
+}
+
+variable "trigger_user_defined_parameters" {
+  description = "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the trigger."
+  type        = string
+  default     = null
 }

@@ -1,0 +1,414 @@
+id: "terraform-ibm-modules/function/ibm/1.0.0"
+name: "function"
+namespace: "terraform-ibm-modules"
+version: "1.0.0"
+providers: ["ibm"]
+description: "Terraform modules to create cloud function resources"
+source: "https://github.com/terraform-ibm-modules/terraform-ibm-function"
+owner: "umarali.nagoor@in.ibm.com"
+published_at: "2021-11-17T14:54:28.979568Z"
+registry: "https://registry.terraform.io/modules/terraform-ibm-modules/function/ibm/latest"
+alias: "function"
+tags: ["function", "ibm-cloud", "ibm-cloud-function"]
+root:
+  - path: "github.com/terraform-ibm-modules/terraform-ibm-function"
+    name: "function"
+    provider_dependencies:
+      - name: "ibm"
+        namespace: "IBM-Cloud"
+        source: "IBM-Cloud/ibm"
+        version: ""
+###################################
+# input_variables
+###################################
+    inputs:
+      - name: "is_new_namespace"
+        type: bool
+        is_required: false
+        default_value: true
+        description: "Option whether to provision namespace"
+        example: true
+        is_sensitive: false
+        related_to: ["ibm_function_namespace.function_namespace", "data.ibm_function_namespace.function_namespace"]
+        is_nullable: false
+        is_force_new: false
+        is_provision_controller: true
+        is_count_controller: true
+      - name: "resource_group_name"
+        type: string
+        is_required: true
+        description: "Name of the resource group"
+        example: "default"
+        is_sensitive: false
+        related_to: ["ibm_resource_group.resource_group", "data.ibm_resource_group.resource_group"]
+        is_nullable: false
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "namespace_name"
+        type: string
+        is_required: true
+        description: "Name of namespace"
+        example: "cf-namespace"
+        is_sensitive: false
+        related_to: ["ibm_function_namespace.function_namespace", "data.ibm_function_namespace.function_namespace"]
+        is_nullable: false
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "namespace_description"
+        type: string
+        is_required: true
+        description: "Namespace Description"
+        example: "iam based namespace"
+        is_sensitive: false
+        related_to: ["ibm_function_namespace.function_namespace"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+  ##################################################
+  # Package variables
+  ##################################################
+      - name: "is_new_package"
+        type: bool
+        is_required: false
+        default_value: false
+        description: "Option whether to provision package"
+        example: false
+        is_sensitive: false
+        related_to: ["ibm_function_package.function_package"]
+        is_nullable: false
+        is_force_new: false
+        is_provision_controller: true
+        is_count_controller: true
+      - name: "is_package_enabled"
+        type: bool
+        is_required: false
+        default_value: false
+        description: "Option whether to read existing package"
+        example: false
+        is_sensitive: false
+        related_to: ["data.ibm_function_package.function_package"]
+        is_nullable: false
+        is_force_new: false
+        is_provision_controller: true
+        is_count_controller: true
+      - name: "package_name"
+        type: string
+        is_required: true
+        description: "Name of package"
+        example: "cf-package"
+        is_sensitive: false
+        related_to: ["ibm_function_package.function_package"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "package_publish"
+        type: bool
+        is_required: false
+        description: "Package visibilty"
+        example: false
+        is_sensitive: false
+        related_to: ["ibm_function_package.function_package"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "package_user_defined_annotations"
+        type: string
+        is_required: false
+        description: "Annotation values in KEY VALUE format."
+        example: <<EOF [{ "key":"Description","value":"Sample code to display hello" }] EOF
+        is_sensitive: false
+        related_to: ["ibm_function_package.function_package"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "package_user_defined_parameters"
+        type: string
+        is_required: false
+        description: "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the package."
+        example: <<EOF [{ "key":"Description","value":"Sample code to display hello" }] EOF
+        is_sensitive: false
+        related_to: ["ibm_function_package.function_package"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "bind_package_name"
+        type: string
+        is_required: false
+        default_value: "/whisk.system/alarms"
+        description: "Name of package to be binded."
+        example: <<EOF [{ "key":"Description","value":"Sample code to display hello" }] EOF
+        is_sensitive: false
+        related_to: ["ibm_function_package.function_package"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+##################################################
+# Action Variables
+##################################################
+      - name: "is_new_action"
+        type: bool
+        is_required: false
+        default_value: false
+        description: "Option whether to provision action"
+        example: false
+        is_sensitive: false
+        related_to: ["ibm_function_action.function_action"]
+        is_nullable: false
+        is_force_new: false
+        is_provision_controller: true
+        is_count_controller: true
+      - name: "is_action_enabled"
+        type: bool
+        is_required: false
+        default_value: false
+        description: "Option whether to read existing action"
+        example: false
+        is_sensitive: false
+        related_to: ["data.ibm_function_action.function_action"]
+        is_nullable: false
+        is_force_new: false
+        is_provision_controller: true
+        is_count_controller: true
+      - name: "action_name"
+        type: string
+        is_required: true
+        description: "Name of action"
+        example: "cf-action"
+        is_sensitive: false
+        related_to: ["ibm_function_action.function_action"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "action_limits"
+        type: list(string)
+        is_required: false
+        description: "Action runtime limits"
+        example: {log_size = 5,timeout  = 50000}
+        is_sensitive: false
+        related_to: ["ibm_function_action.function_action"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "action_exec"
+        type: list(string)
+        is_required: false
+        description: "Execution info"
+        example: {kind = "nodejs:10",code = file("test-fixtures/hellonodewithparameter.js")}
+        is_sensitive: false
+        related_to: ["ibm_function_action.function_action"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "action_publish"
+        type: bool
+        is_required: false
+        description: "Action visibilty"
+        example: false
+        is_sensitive: false
+        related_to: ["ibm_function_action.function_action"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "action_user_defined_annotations"
+        type: string
+        is_required: false
+        description: "Annotation values in KEY VALUE format."
+        example: <<EOF [{ "key":"Description","value":"Sample code to display hello" }] EOF
+        is_sensitive: false
+        related_to: ["ibm_function_action.function_action"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "action_user_defined_parameters"
+        type: string
+        is_required: false
+        description: "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the action."
+        example: <<EOF [{ "key":"Description","value":"Sample code to display hello" }] EOF
+        is_sensitive: false
+        related_to: ["ibm_function_action.function_action"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+##################################################
+# Trigger Variables
+##################################################
+      - name: "is_new_trigger"
+        type: bool
+        is_required: false
+        default_value: false
+        description: "Option whether to provision trigger"
+        example: false
+        is_sensitive: false
+        related_to: ["ibm_function_trigger.function_trigger"]
+        is_nullable: false
+        is_force_new: false
+        is_provision_controller: true
+        is_count_controller: true
+      - name: "is_trigger_enabled"
+        type: bool
+        is_required: false
+        default_value: false
+        description: "Option whether to read existing trigger"
+        example: false
+        is_sensitive: false
+        related_to: ["data.ibm_function_trigger.function_trigger"]
+        is_nullable: false
+        is_force_new: false
+        is_provision_controller: true
+        is_count_controller: true
+      - name: "trigger_name"
+        type: string
+        is_required: true
+        description: "Name of action"
+        example: "cf-trigger"
+        is_sensitive: false
+        related_to: ["ibm_function_trigger.function_trigger"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "trigger_feed"
+        type : list(string)
+        is_required: false
+        default_value: [{ name = "/whisk.system/alarms/alarm"parameters = <<EOF[{"key" : "cron","value" : "* * * * *"}]EOF}]
+        description: "Tags for the resource"
+        example: ["env:prod"]
+        is_sensitive: false
+        related_to: ["ibm_function_trigger.function_trigger"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "trigger_user_defined_annotations"
+        type: string
+        is_required: false
+        description: "Annotation values in KEY VALUE format."
+        example: <<EOF [{ "key":"Description","value":"Sample code to display hello" }] EOF
+        is_sensitive: false
+         related_to: ["ibm_function_trigger.function_trigger"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+      - name: "trigger_user_defined_parameters"
+        type: string
+        is_required: false
+        description: "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the trigger."
+        example: <<EOF [{ "key":"Description","value":"Sample code to display hello" }] EOF
+        is_sensitive: false
+         related_to: ["ibm_function_trigger.function_trigger"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+##################################################
+# Rule Variables
+##################################################
+      - name: "is_new_rule"
+        type: bool
+        is_required: false
+        default_value: false
+        description: "Option whether to provision rule"
+        example: false
+        is_sensitive: false
+        related_to: ["ibm_function_rule.function_rule"]
+        is_nullable: false
+        is_force_new: false
+        is_provision_controller: true
+        is_count_controller: true
+      - name: "rule_name"
+        type: string
+        is_required: true
+        description: "Name of rule"
+        example: "cf-rule"
+        is_sensitive: false
+        related_to: ["ibm_function_rule.function_rule"]
+        is_nullable: true
+        is_force_new: false
+        is_provision_controller: false
+        is_count_controller: false
+###################################
+# output variables
+###################################
+    outputs:
+      - name: "namespace_name"
+        type : string
+        description : "Namespace name"
+        is_sensitive: false
+        related_to: ["ibm_function_namespace.function_namespace", "data.ibm_function_namespace.function_namespace"]
+      - name: "package_name"
+        type : string
+        description : "Package name"
+        is_sensitive: false
+        related_to: ["ibm_function_package.function_package", "data.ibm_function_package.function_package"]
+      - name: "action_name"
+        type : string
+        description : "Action name"
+        is_sensitive: false
+        related_to: ["ibm_function_action.function_action", "data.ibm_function_action.function_action"]
+      - name: "trigger_name"
+        type : string
+        description : "Trigger name"
+        is_sensitive: false
+        related_to: ["ibm_function_trigger.function_trigger", "data.ibm_function_trigger.function_trigger"]
+      - name: "rule_name"
+        type : string
+        description : "Rule name"
+        is_sensitive: false
+        related_to: ["ibm_function_rule.function_rule"]
+    resources:
+      - type: "ibm_function_namespace"
+        name: "function_namespace"
+        description: "provision namespace"
+        provider: "ibm"
+      - type: "ibm_function_package"
+        name: "function_package"
+        description: "provision package"
+        provider: "ibm"
+      - type: "ibm_function_action"
+        name: "function_action"
+        description: "provision action"
+        provider: "ibm"
+      - type: "ibm_function_trigger"
+        name: "function_trigger"
+        description: "provision trigger"
+        provider: "ibm"
+      - type: "ibm_function_rule"
+        name: "function_rule"
+        description: "provision rule"
+        provider: "ibm"
+    datasources:
+      - type: "ibm_function_namespace"
+        name: "function_namespace"
+        description: "Read namespace resource"
+        provider: "ibm"
+      - type: "ibm_resource_group"
+        name: "resource_group"
+        description: "Read resource group"
+        provider: "ibm"
+      - type: "ibm_function_package"
+        name: "function_package"
+        description: "Read package"
+        provider: "ibm"
+      - type: "ibm_function_action"
+        name: "function_action"
+        description: "Read action"
+        provider: "ibm"
+      - type: "ibm_function_trigger"
+        name: "function_trigger"
+        description: "Read trigger"
+        provider: "ibm"

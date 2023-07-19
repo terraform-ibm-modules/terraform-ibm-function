@@ -1,5 +1,18 @@
 # IBM Function Terraform Module
 
+---
+
+## Module archived
+
+:spider_web: This repo is no longer maintained and is archived.
+
+
+## Changes if you use the Hashicorp registry
+
+:exclamation: **Important:**  This module will be deleted from the Hashicorp registry on 1 August 2023. 
+
+---
+
 This is a collection of modules that make it easier to provision Function resources on IBM Cloud Platform:
 * [namespace](modules/namespace)
 * [package](modules/package)
